@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from BMIApp.views import BMIForm
+from BMIApp.views import Test, Stop
 
 urlpatterns = [
-    path('', BMIForm.as_view()),
+    path('', Test.as_view()),
+    path("stop/", Stop.as_view()),
     path('admin/', admin.site.urls),
 ]
