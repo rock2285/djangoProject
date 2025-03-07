@@ -6,6 +6,13 @@ class BMIForm(View):
         errorMessage = []
         bmi = 0
         #case 1: arrive at page for first time, no data sent
+        errorMessage.append("Welcome! Enter your height and weight then click submit.")
+        return render(request, "form.html", {"message": errorMessage})
+        
+    def post(self,request):
+        errorMessage = []
+        bmi = 0
+        #case 1: arrive at page for first time, no data sent
         if len(request.GET)==0:
             errorMessage.append("Welcome! Enter your height and weight then click submit.")
             return render(request, "form.html", {"message": errorMessage})
