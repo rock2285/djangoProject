@@ -13,35 +13,35 @@ class BMIForm(View):
         errorMessage = []
         bmi = 0
         #case 1: arrive at page for first time, no data sent
-        if len(request.GET)==0:
+        if len(request.POST)==0:
             errorMessage.append("Welcome! Enter your height and weight then click submit.")
             return render(request, "form.html", {"message": errorMessage})
 
         #case 2: arrive at page from form submission, check data validity
         try:
-            weight = int(request.GET["weight"])
+            weight = int(request.POST["weight"])
         except(ValueError):
-            errorMessage.append("invalid weight: " + request.GET["weight"])
+            errorMessage.append("invalid weight: " + request.POST["weight"])
         else:
             if weight <= 0:
                 errorMessage.append( "weight must be > 0; weight = " + str(weight))
 
         try:
-            ft = int(request.GET["ft"])
+            ft = int(request.POST["ft"])
         except(ValueError):
-            errorMessage.append("invalid feet: " + request.GET["ft"])
+            errorMessage.append("invalid feet: " + request.POST["ft"])
         else:
             if ft <= 0:
                 errorMessage.append("feet must be > 0; ft = " + str(ft))
 
         try:
-            strInch = request.GET["in"]
+            strInch = request.POST["in"]
             if strInch != "":
                 inch = int(strInch)
             else:
                 inch = 0 #leaving in blank is ok
         except(ValueError):
-            errorMessage.append("invalid inches: " + request.GET["in"])
+            errorMessage.append("invalid inches: " + request.POST["in"])
         else:
             if inch < 0:
                 errorMessage.append("inches must be >= 0; in = " + str(inch))
